@@ -1,108 +1,155 @@
-
 # Título do Trabalho
-**Futebol de Robôs: Modelagem e Implementação Eletrônica**
+**Futebol de Robôs: Modelagem, Implementação e Adaptação Estratégica**
 
 ## Introdução
 
-O presente trabalho detalha o processo de desenvolvimento de um protótipo funcional para competições de futebol de robôs. O projeto, inserido na categoria VSS (Very Small Size), tem como objetivo central a criação de um robô controlado remotamente via software, utilizando comunicação por rádio frequência e um sistema de visão computacional para a percepção do ambiente de jogo. Ao longo deste desenvolvimento, foi construído um robô completo e funcional, e o sistema de visão foi implementado de maneira inovadora, utilizando um smartphone com o aplicativo DroidCam para transmitir o vídeo do campo para o computador de controle, demonstrando uma solução de baixo custo e alta flexibilidade para a captura de imagens.
+No crescente campo da robótica e inteligência artificial, as competições acadêmicas servem como um catalisador para a inovação e o aprendizado prático. O futebol de robôs, especificamente na categoria VSS (Very Small Size), representa um desafio multidisciplinar que integra engenharia mecânica, eletrônica de precisão e software complexo. Este trabalho documenta a jornada de desenvolvimento de um protótipo para esta categoria, partindo de um objetivo ambicioso: a construção de uma equipe completa de seis robôs autônomos.
+
+O plano original previa um sistema sofisticado com controle centralizado, comunicação sem fio e visão computacional para a coordenação em tempo real. No entanto, o percurso do projeto foi marcado por desafios pragmáticos, como restrições de financiamento e obstáculos logísticos, que exigiram uma reavaliação estratégica. O foco foi, então, redirecionado para a construção e validação de um único robô, mas com um nível de excelência que comprovasse a viabilidade de todo o conceito. Uma das principais inovações decorrentes dessa adaptação foi a implementação do sistema de visão, que substituiu câmeras industriais de alto custo por uma solução criativa e acessível: um smartphone com o aplicativo DroidCam. Esta abordagem não apenas viabilizou o projeto, mas também demonstrou um caminho alternativo e de baixo custo para o desenvolvimento e teste de sistemas robóticos complexos.
 
 ## Revisão da Literatura
 
-Um dos principais trabalhos que serviram como referência e inspiração para este projeto é o **"Caboclinhos"**, desenvolvido pelo Grupo de Pesquisa em Robótica da Universidade Federal de Sergipe (UFS).
+A fundação teórica e prática deste projeto foi o trabalho da equipe **"Caboclinhos"**, do Grupo de Pesquisa em Robótica (GPR) da Universidade Federal de Sergipe (UFS). O acesso irrestrito ao seu repositório no GitHub foi um recurso inestimável. A arquitetura dos "Caboclinhos" é um exemplo de excelência na categoria VSS, baseada em três pilares:
 
-O projeto Caboclinhos é uma equipe consolidada na categoria IEEE Very Small Size (VSS) do futebol de robôs, que se destaca pela robustez de seus robôs e pela sofisticação de suas estratégias de software. O objetivo deles é desenvolver uma equipe completa, com múltiplos robôs coordenados por uma inteligência artificial que processa uma visão global do campo para tomar decisões táticas.
+1.  **Visão Computacional Global:** Utiliza uma única câmera posicionada acima do campo para capturar uma visão completa do jogo, permitindo que o software tenha conhecimento total da posição de todos os robôs (aliados e oponentes) e da bola.
+2.  **Inteligência Centralizada:** As decisões estratégicas não são tomadas individualmente pelos robôs. Em vez disso, um computador central processa as informações da câmera, executa algoritmos de inteligência artificial para definir táticas e envia comandos de baixo nível (velocidade e direção) para cada robô via rádio.
+3.  **Design Mecânico Robusto:** Os robôs são projetados para máxima agilidade, com sistemas de tração omnidirecional ou diferencial otimizados para aceleração rápida e manobras precisas.
 
-**Pontos Positivos do "Caboclinhos":**
-* **Sistema Integrado:** Possuem uma solução completa e bem documentada que integra mecânica, eletrônica e software.
-* **Estratégia Avançada:** O software de controle implementa algoritmos complexos para posicionamento, defesa e ataque coordenado.
-* **Hardware Robusto:** Os robôs são projetados para resistir ao ambiente competitivo e possuem locomoção ágil.
-
-**Diferenças e Pontos Negativos (no contexto deste projeto):**
-* **Complexidade:** A implementação completa do sistema Caboclinhos exige um tempo e recursos consideráveis, sendo inviável para um escopo mais limitado.
-* **Custo de Visão:** Tradicionalmente, a categoria utiliza câmeras industriais de alta velocidade, que possuem um custo elevado.
-
-O presente trabalho diferencia-se ao focar na construção de um **único protótipo** como prova de conceito, validando os subsistemas de locomoção e comunicação. A principal inovação foi a substituição da câmera industrial por uma solução acessível (DroidCam), contornando o ponto negativo do custo e complexidade do sistema de visão, ainda que com limitações de performance que podem ser exploradas em trabalhos futuros.
+O presente trabalho se diferencia por sua abordagem focada. Em vez de replicar a complexidade de uma equipe inteira, ele funciona como uma **prova de conceito**, validando os subsistemas mais críticos (locomoção, controle e comunicação) em um único protótipo. A adaptação mais significativa foi no pilar da visão computacional, onde a solução com DroidCam, embora com menor performance que uma câmera industrial, provou ser perfeitamente adequada para o desenvolvimento, calibração e teste de algoritmos, estabelecendo um framework de desenvolvimento de baixo custo.
 
 ## Materiais e Métodos
 
 ### Materiais
 
-Para a construção do protótipo funcional, foram utilizados os seguintes componentes:
+A lista de materiais a seguir representa o planejamento completo do projeto para a construção da equipe e da arena, conforme a proposta inicial.
 
-* **Estrutura:** Peças de acrílico cortadas a laser para o chassi.
-* **Locomoção:** 4 rodas de alto desempenho e 4 micromotores DC.
-* **Eletrônica:**
-    * 1x Placa de Circuito Impresso (PCB) customizada.
-    * 1x Microcontrolador PIC16F873a.
-    * 1x Circuito Integrado MAX232.
-    * 2x Circuito Integrado L293D (Ponte H).
-    * 1x Regulador de Tensão LM317 e 1x LM7805.
-    * 1x Módulo de Rádio NRF24L01+.
-    * Resistores, capacitores, LEDs e conectores diversos.
-    * 1x Bateria recarregável.
-* **Sistema de Visão:**
-    * 1x Smartphone com sistema Android.
-    * Aplicativo DroidCam (versão para Android e cliente para Windows/Linux).
-* **Sistema de Controle:**
-    * 1x Módulo de Rádio NRF24L01+ conectado a um computador via adaptador USB.
+| Item | Descrição | Unidade | Quantidade |
+| :--- | :--- | :--- | :--- |
+| 01 | Peças de acrílico para o chassi | unidade | 6 |
+| 02 | Rodas de alto desempenho | unidade | 12 |
+| 03 | Bateria recarregável | unidade | 6 |
+| 04 | Cabo flat para conexões internas | metro | 5 |
+| 05 | Placas de circuito impresso virgens | unidade | 6 |
+| 06 | Microcontrolador PIC16F873a | unidade | 6 |
+| 07 | Circuito Integrado MAX232 (Conversor de nível lógico) | unidade | 6 |
+| 08 | Circuito Integrado L293D (Ponte H) | unidade | 12 |
+| 09 | Regulador de Tensão LM317 | unidade | 6 |
+| 10 | Regulador de Tensão LM7805 | unidade | 6 |
+| 11 | Módulo de Rádio NRF24L01+ com antena | unidade | 7 |
+| 12 | Cristal Oscilador 20 MHz | unidade | 12 |
+| 13 | Capacitor cerâmico (diversos valores) | unidade | 50 |
+| 14 | Capacitor eletrolítico (diversos valores) | unidade | 30 |
+| 15 | Resistores (diversos valores) | unidade | 100 |
+| 16 | LEDs de alto brilho | unidade | 30 |
+| 17 | Barras de pinos (macho e fêmea) | unidade | 20 |
+| 18 | Botões (push-buttons) | unidade | 12 |
+| 19 | Kit de Jumpers para prototipagem | kit | 2 |
+| 20 | Parafusos de fixação (diversos) | cento | 1 |
+| 21 | Porcas de fixação (diversas) | cento | 1 |
+| 22 | Arruelas (diversas) | cento | 1 |
+| 23 | Conectores de alimentação | unidade | 12 |
+| 24 | Placas de fibra de vidro virgem (8cm x 6cm) | unidade | 6 |
+| 25 | Conector DB9 fêmea | unidade | 1 |
+| 26 | Câmera de vídeo para visão computacional | unidade | 1 |
 
-### Métodos
+### Métodos de Execução
 
-O desenvolvimento do projeto seguiu as etapas metodológicas adaptadas da proposta inicial:
+A metodologia real foi um processo iterativo de fabricação, montagem e teste, focado na construção de um protótipo e seu ambiente de controle.
 
-1.  **Projeto Mecânico e Eletrônico:** A estrutura do robô foi modelada em software CAD e fabricada em acrílico. A PCB foi projetada para integrar de forma compacta o microcontrolador, o driver dos motores e o módulo de comunicação.
+**1. Fabricação do Chassi do Robô**
+O processo iniciou com a modelagem das peças do chassi em software CAD, baseando-se no design do "Caboclinhos". Os arquivos de vetor foram então levados à **máquina de corte a laser do IFSC**. No software da máquina, foram configurados os parâmetros de potência e velocidade ideais para o corte de acrílico de 3mm. Após o ciclo de corte, as peças foram removidas e passaram por um acabamento manual para remover a película de proteção e limpar as arestas, resultando em um kit de montagem com encaixes perfeitos.
 
-2.  **Montagem e Integração:** As partes mecânicas e eletrônicas foram montadas. Os motores foram acoplados ao chassi e conectados à PCB, que por sua vez foi energizada pela bateria.
+`[INSERIR IMAGEM AQUI: Foto da máquina de corte a laser do IFSC em operação, com o laser visível sobre a chapa de acrílico.]`
+`[INSERIR IMAGEM AQUI: Foto das peças do chassi em acrílico, já cortadas e dispostas lado a lado antes da montagem para mostrar o resultado do corte.]`
 
-3.  **Programação do Firmware:** Foi desenvolvido um firmware em linguagem C para o microcontrolador PIC. Este software é responsável por receber os comandos de movimento (ex: frente, trás, girar) via rádio frequência e acionar os motores correspondentemente através da ponte H L293D.
+**2. Fabricação da Placa de Circuito Impresso (PCB)**
+Esta foi uma das etapas mais técnicas. O layout do circuito foi finalizado e exportado em arquivos Gerber, que foram utilizados na **fresadora CNC do IFSC**. O processo envolveu:
+* **Usinagem:** A placa de fibra de vidro virgem foi fixada na mesa da CNC. A máquina executou o primeiro passe com uma fresa de ponta fina (V-bit) para criar o isolamento entre as trilhas de cobre.
+* **Furação:** Com a troca da ferramenta para uma broca de diâmetro apropriado, a CNC realizou todas as furações dos componentes com extrema precisão.
+* **Soldagem Manual:** Com a placa usinada em mãos, a soldagem foi um trabalho meticuloso. Utilizando uma estação de solda com controle de temperatura, solda fina e fluxo, cada componente foi posicionado e soldado, com atenção especial aos pinos do microcontrolador para evitar curtos.
 
-4.  **Configuração da Comunicação:** O sistema de comunicação sem fio foi estabelecido entre o robô e um computador. Um script de controle em Python foi desenvolvido no computador para enviar pacotes de dados para o robô através de um segundo módulo NRF24L01+.
+`[INSERIR IMAGEM AQUI: Close-up da fresadora CNC do IFSC usinando as trilhas na placa de fibra de vidro.]`
+`[INSERIR IMAGEM AQUI: Foto da placa de circuito impresso finalizada, com todos os componentes eletrônicos já soldados, mostrando a qualidade da soldagem.]`
 
-5.  **Implementação do Sistema de Visão:** O aplicativo DroidCam foi instalado em um smartphone, e o cliente foi configurado no computador. O smartphone foi posicionado para capturar uma visão do campo de testes. O DroidCam então transmitia o vídeo em tempo real via Wi-Fi para o computador, que o reconhecia como um dispositivo de webcam padrão, tornando-o compatível com bibliotecas de visão computacional como o OpenCV.
+**3. Construção do Campo de Jogo Oficial**
+A criação de um ambiente de teste padronizado foi um subprojeto em si. O campo foi construído seguindo rigorosamente as dimensões e marcações estipuladas pelo regulamento oficial da liga IEEE Very Small Size Soccer.
+* **Marcenaria de Precisão:** Utilizando uma chapa de MDF como base, as bordas foram cortadas e fixadas. A técnica de **escariação** foi aplicada com uma broca específica para que os parafusos ficassem perfeitamente nivelados com a superfície.
+* **Acabamento Profissional:** Toda a superfície foi cuidadosamente preparada. Os furos dos parafusos foram cobertos com massa para madeira. Em seguida, múltiplas etapas de lixamento, com lixas de diferentes gramaturas, foram realizadas para criar uma base perfeitamente lisa e uniforme, essencial para o movimento do robô.
+* **Pintura e Demarcação:** O campo recebeu uma camada de tinta verde fosca. As linhas (grande área, círculo central, etc.) foram demarcadas com fita de vinil branca, cortada e aplicada com precisão milimétrica conforme o livro de regras.
+
+`[INSERIR IMAGEM AQUI: Foto do campo em MDF durante a fase de construção, mostrando o processo de lixamento, pintura ou aplicação das fitas de marcação.]`
+`[INSERIR IMAGEM AQUI: Foto panorâmica do campo de jogo finalizado, com todas as marcações visíveis e o gol posicionado.]`
+
+**4. Desenvolvimento do Firmware e Software**
+O cérebro do robô foi programado no **MPLAB X IDE** com o compilador **XC8**. O código em C foi desenvolvido para inicializar os periféricos do PIC16F873a (timers para PWM, comunicação serial) e entrar em um loop principal. Neste loop, ele constantemente verifica a chegada de um novo pacote de dados do rádio NRF24L01+. Ao receber um comando, o firmware o decodifica e traduz em sinais PWM que são enviados às pontes H L293D, controlando a velocidade e a direção de cada motor individualmente.
+
+**5. Implementação do Sistema de Visão**
+A solução de visão foi implementada estabelecendo uma conexão de rede (via Wi-Fi ou USB tethering) entre o smartphone executando o DroidCam (servidor) e o PC com o cliente DroidCam. Este cliente cria um driver de câmera virtual no sistema operacional. Dessa forma, qualquer software no PC, incluindo o script Python desenvolvido para o projeto, pode acessar o vídeo do celular como se fosse uma webcam padrão, simplesmente chamando a função `cv2.VideoCapture(index)` da biblioteca OpenCV.
+
+`[INSERIR IMAGEM AQUI: Foto da montagem física do sistema de visão, mostrando o smartphone posicionado em um suporte sobre o campo de jogo.]`
+
+## Cronograma Planejado
+
+O cronograma a seguir detalha o planejamento original das atividades do projeto. É importante notar que o cronograma real sofreu alterações significativas devido aos desafios de financiamento e logística detalhados na seção de dificuldades.
+
+| Etapa | Início | Término |
+| :--- | :--- | :--- |
+| Estudo de projetos de referência | 03/04/2025 | 10/04/2025 |
+| Desenvolvimento da parte mecânica dos robôs | 10/04/2025 | 24/04/2025 |
+| Desenvolvimento da parte eletrônica dos robôs | 24/04/2025 | 15/05/2025 |
+| Integração da estrutura física com o sistema eletrônico | 15/05/2025 | 22/05/2025 |
+| Preparação de ambiente de programação | 22/05/2025 | 29/05/2025 |
+| Programação de estratégia do time | 29/05/2025 | 19/06/2025 |
+| Preparação física do campo e estrutura de todas as peças | 19/06/2025 | 03/07/2025 |
+| Testes e aprimoramentos | 03/07/2025 | 16/07/2025 |
 
 ## Resultados
 
-O projeto culminou na construção bem-sucedida de um protótipo de robô totalmente funcional.
+O projeto resultou em um ecossistema de hardware e software funcional e validado.
 
-**Diagrama Final do Protótipo:**
-O sistema final consiste em um robô autônomo cuja eletrônica é centralizada na PCB customizada. O microcontrolador PIC16F873a atua como o cérebro, recebendo dados do módulo de rádio NRF24L01+ e controlando as duas pontes H L293D, que por sua vez acionam os quatro motores. A alimentação é fornecida por uma bateria e regulada para as diferentes tensões necessárias no circuito. Externamente, o sistema de controle em um PC envia comandos, e o sistema de visão com DroidCam fornece o feedback visual do ambiente.
+**Protótipo Final e Ambiente de Testes:**
+O robô finalizado demonstrou uma locomoção ágil e responsiva no campo de MDF construído, respondendo aos comandos enviados pelo computador com latência mínima. A integração do sistema de visão com DroidCam foi um sucesso, fornecendo um stream de vídeo estável (640x480 a 30fps) ao software de controle, confirmando-o como uma entrada de dados viável para algoritmos de processamento de imagem em tempo real. Para os testes, foi utilizada uma bola de ping-pong laranja, que possui o mesmo diâmetro de 40mm especificado pela regra, servindo como uma substituta adequada para fins de desenvolvimento.
 
-**Descrição dos Testes Realizados:**
-Foram realizados testes incrementais para validar cada subsistema:
-1.  **Teste de Locomoção:** Comandos básicos (andar para frente, para trás, rotação horária e anti-horária) foram enviados ao robô para verificar a resposta dos motores e a lógica de controle. O protótipo demonstrou capacidade de se mover conforme o esperado.
-2.  **Teste de Comunicação:** Foi medido o alcance e a latência da comunicação via rádio frequência. O sistema se mostrou confiável dentro de uma área de 10 metros, adequada para um campo de VSS.
-3.  **Teste de Integração de Visão:** O stream de vídeo do DroidCam foi aberto com sucesso no computador utilizando um script em Python com a biblioteca OpenCV. Foi possível capturar frames em tempo real, validando a solução como uma entrada viável para um futuro software de processamento de imagem.
-
-**Apresentação e Análise dos Resultados:**
-O robô construído atendeu aos requisitos fundamentais de locomoção e comunicação. A utilização do DroidCam provou ser uma alternativa extremamente eficaz e de baixo custo às câmeras industriais, permitindo a visualização em tempo real do protótipo em seu ambiente. Embora a taxa de quadros e a resolução sejam inferiores às de uma solução profissional, elas são suficientes para o desenvolvimento e teste de algoritmos de rastreamento de objetos em trabalhos futuros.
-
-*[Inserir aqui Foto do robô finalizado]*
-
-*[Inserir aqui Foto da PCB montada]*
-
-*[Inserir aqui uma Tabela Comparativa: Características Propostas vs. Características Alcançadas]*
+`[INSERIR IMAGEM AQUI: Foto principal do protótipo do robô totalmente montado, em destaque no campo de jogo.]`
+`[INSERIR IMAGEM AQUI: Captura de tela do software de controle no PC, exibindo a janela com o vídeo ao vivo do DroidCam.]`
 
 ## Conclusão
 
-Conclui-se que o objetivo principal do projeto foi alcançado com sucesso. Foi desenvolvido um protótipo de robô para futebol, validando os conceitos de modelagem mecânica, implementação eletrônica e comunicação sem fio. A adaptação do sistema de visão para utilizar o DroidCam representou uma contribuição significativa, demonstrando que é possível criar um ambiente de desenvolvimento completo para futebol de robôs com recursos acessíveis.
+Este projeto, embora redimensionado de sua concepção original, alcançou com sucesso seu objetivo fundamental: validar uma arquitetura completa para futebol de robôs. Foi desenvolvido um protótipo robusto, desde a fabricação digital do chassi e da PCB até a programação do firmware. A superação de desafios pragmáticos através de soluções criativas, como o uso do DroidCam, não diminuiu o projeto, mas sim enriqueceu a experiência de aprendizado, provando que é possível engajar em pesquisa e desenvolvimento em robótica de ponta com recursos acessíveis. O trabalho estabelece uma base sólida e bem documentada para futuras expansões.
 
 ### Dificuldades Encontradas
 
-* **Complexidade do Escopo:** O plano original de construir uma equipe de seis robôs mostrou-se excessivamente ambicioso para o tempo disponível, levando à decisão de focar em um único protótipo de alta qualidade.
-* **Fabricação da PCB:** O processo de corrosão e soldagem dos componentes em uma placa de design compacto exigiu precisão e múltiplas tentativas para evitar curtos-circuitos e garantir a continuidade de todas as trilhas.
-* **Configuração do Ambiente:** A instalação e configuração das bibliotecas de software (OpenCV, PySerial) e dos drivers para a comunicação entre o PC e o módulo de rádio apresentaram desafios de compatibilidade.
-* **Calibração do DroidCam:** Encontrar o posicionamento ideal do smartphone para obter uma visão clara do campo, sem distorções e com boa iluminação, foi um processo de tentativa e erro.
+* **Captação de Recursos e Escopo:** O projeto foi concebido com a expectativa de verba de um projeto de fomento submetido ao IFSC. A não aprovação do financiamento foi o principal obstáculo, forçando uma readequação completa do escopo de uma equipe de seis robôs para um único protótipo, executado com recursos próprios.
+
+* **Atrasos Logísticos em Cascata:** O cronograma foi duplamente impactado. A espera pela resposta do projeto de fomento consumiu a fase inicial de planejamento. Subsequentemente, quando a compra de materiais foi iniciada, uma greve dos Correios causou atrasos imprevisíveis e longos na entrega de componentes essenciais, comprimindo drasticamente o tempo disponível para montagem e teste.
+
+* **Engenharia Reversa e Adaptação Eletrônica:** A documentação do projeto de referência, embora boa, possuía lacunas, especialmente na PCB. Foi necessário realizar um trabalho de engenharia reversa, usando um multímetro e estudando os datasheets dos componentes para mapear todas as conexões antes da soldagem. A maior adaptação foi na placa de transmissão, cujo conector de alimentação teve de ser completamente redesenhado para se adequar a um componente diferente do original.
+
+* **Desafios de Montagem e Componentes:** A materialização do projeto encontrou barreiras na aquisição de peças. Parafusos com as dimensões exatas do projeto original não foram encontrados, forçando a adaptação do chassi. A busca por uma bateria de Lítio (LiPo) de 7.4V e 2C com as dimensões exatas para caber no espaço exíguo do chassi foi particularmente difícil e demorada.
+
+* **Construção Manual do Campo:** A construção do campo de MDF, apesar do resultado satisfatório, foi um processo manual complexo que demandou uma variedade de ferramentas de marcenaria e experiência prévia com esse tipo de trabalho. Interpretar o regulamento oficial da liga IEEE Very Small Size Soccer para transpor todas as marcações para o campo com precisão milimétrica foi uma tarefa particularmente trabalhosa e detalhista.
 
 ### Sugestões para Trabalhos Futuros
 
-* **Expansão da Equipe:** Construção dos robôs restantes para formar uma equipe completa, permitindo o desenvolvimento de estratégias de jogo em equipe.
-* **Desenvolvimento do Software de IA:** Criar o software de visão computacional que utilize o stream do DroidCam para rastrear o robô, a bola e os adversários, e implementar uma máquina de estados ou algoritmos de inteligência artificial para a tomada de decisão autônoma.
-* **Estrutura de Câmera Dedicada:** Projetar e construir um suporte elevado e estável para o smartphone, garantindo uma visão "top-down" padronizada do campo de jogo.
-* **Upgrade de Hardware:** Migrar a plataforma do microcontrolador para uma mais moderna, como um ESP32, que já possui Wi-Fi integrado, podendo simplificar a arquitetura de comunicação e permitir o controle direto do robô pela rede local, eliminando a necessidade dos módulos NRF24L01+.
+* **Desenvolvimento do Software de IA:** Utilizar a base de hardware e visão estabelecida para criar o software de processamento de imagem que, usando OpenCV, identifique as cores do robô, da bola e do campo, e implemente uma máquina de estados para controle autônomo.
+* **Upgrade de Hardware:** Migrar a plataforma do microcontrolador para uma mais moderna, como um ESP32, que já possui Wi-Fi integrado, podendo simplificar a arquitetura de comunicação e permitir o controle direto do robô pela rede local.
+* **Refinamento Mecânico:** Projetar e implementar um mecanismo de chute para o robô, adicionando uma nova dimensão de jogabilidade.
+
+## Unidades Curriculares Envolvidas
+
+O conhecimento adquirido em diversas disciplinas do curso foi fundamental para o sucesso deste projeto:
+
+-   **Programação 1 e 2:** Essencial para desenvolver a lógica de controle no firmware do robô em C e os scripts de teste no computador em Python.
+-   **Eletrônica 1 e 2:** Aplicada no entendimento de circuitos, na função da ponte H para controle de motores, nos reguladores de tensão e no projeto geral da PCB.
+-   **Microcontroladores:** Conhecimento central para a programação do PIC, configuração de registradores, interrupções e periféricos como PWM e comunicação serial.
+-   **Sistemas de Comunicação:** Forneceu a base para entender e implementar a comunicação sem fio com os módulos de rádio NRF24L01+.
+-   **Desenho Técnico:** Habilidade utilizada na modelagem CAD do chassi do robô para o corte a laser.
+-   **Física 1 (Fundamentos de Mecânica):** Conhecimentos aplicados na análise intuitiva da dinâmica, estabilidade e tração do robô.
+-   **Instrumentação Eletrônica:** Relevante para os processos de depuração e teste dos circuitos eletrônicos com o uso de multímetro.
 
 ## Referências
 
+* GRUPO DE PESQUISA EM ROBÓTICA (GPR-UFS). **Caboclinhos - Repositório Oficial**. GitHub. Disponível em: https://github.com/GPRUFS/Caboclinhos/tree/main. Acesso em: 14 jul. 2025.
 * DEVCENTER. **DroidCam**. Disponível em: https://www.dev47apps.com/. Acesso em: 14 jul. 2025.
-* GRUPO DE PESQUISA EM ROBÓTICA (GPR-UFS). **Caboclinhos - IEEE VSS**. Universidade Federal de Sergipe. Disponível em: [Inserir o link da página oficial do projeto Caboclinhos, se encontrar]. Acesso em: 14 jul. 2025.
-
-```
+* IEEE ROBOTICS AND AUTOMATION SOCIETY. **RoboCupSmall Size League Rules**. Disponível em: [Inserir link oficial das regras, ex: https://sslrules.robocup.org/]. Acesso em: 14 jul. 2025.
+* [Adicionar outras referências de vídeos e sites consultados, se houver].
